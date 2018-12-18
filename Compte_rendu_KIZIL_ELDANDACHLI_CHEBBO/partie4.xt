@@ -1,0 +1,29 @@
+Partie 4:
+
+1) busybox.config : fichier de configuration pour les options/commandes voulues dans notre environnement
+   configs/embsys_defconfig: fichier de configuration de notre Buildroot pour notre système embarqué
+   users.tables: fichier sur les comptes utilisateurs ajoutés
+
+2) En se rendant dans le répertoire *config*, on voit qu'il y a un fichier config pour raspberry pi 3 64 bits et un autre standard: raspberrypi3_defconfig
+
+3) Le dossier *package* contie nt les directives de compilation de différents "paquets".
+
+4) S50sshd : permet de gérer les services
+   openssh.hash : contient le hash du tarball
+   openssh.mk: le makefile pour la compilation
+   Config.in: concernant la configuration du service OpenSsh
+   .patch files: permet d'ajuster et d'ajouter des options et services
+
+5)post-build: permet de modifier les fichiers root sans qu'il y ait besoin de tout re compiler.
+  post-image: assez similaire à post-build, permet de modifier les images sans tout refaire de zéro.
+  .cfg files: permet de configurer la création et la génération des différentes images pour les différentes architectures de raspberry.
+  readme-txt: donne les instructions à l'utilisateur
+
+6)make embsys_defconfig: sert à télécharger les listes et les packages, définir la configuration et enfin compiler le système. 
+
+7)  CPU ciblé: Cortex-A53
+  ABI: EABIhf pour embedded ABI - Hard Float permet de calculer en virgule flottante ce qui implique que le proc possède une FPU
+  librairie C: uClibc-ng
+  la version du cross-compilateur: gcc 6.X
+  Version kernel: 4.14 en suivant le dépôt git
+  Architecture cible: ARM (little endian)
